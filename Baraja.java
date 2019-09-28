@@ -53,9 +53,5 @@ public abstract class Baraja {
         System.out.println(c.toString() + "\n");
       } 
     }
-  }  
-  
-  
-  
-  
+  }   
 }
