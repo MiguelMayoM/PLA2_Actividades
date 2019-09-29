@@ -145,7 +145,7 @@ public class Actividades {
     Jugador jdr1 = jugadores[0];
     Jugador jdr2 = jugadores[1];
     
-    Espanyola barEspanyola = new Espanyola();
+    Baraja barEspanyola = new Espanyola();
     impln("Para comenzar el juego, se muestra que la baraja está completa sin cartas repetidas:");
     
     //String strPalo = "";
@@ -204,7 +204,7 @@ public class Actividades {
     barEspanyola.mostrarCartasBaraja();
     impln("Resulta que íbamos a jugar a póker, así que hemos de cambiar de baraja a una Francesa.");
     
-    Francesa barFrancesa = new Francesa(); 
+    Baraja barFrancesa = new Francesa(); 
     barFrancesa.mostrarCartasBaraja();
     impln("Las barajamos:");
     barFrancesa.barajar();
@@ -217,7 +217,7 @@ public class Actividades {
     Cabecera(3);
     /*Creo primero la instancia del juego Mus para usar directamente su ArrayList
       interior para guardar los jugadores*/
-    Mus juegoMus = new Mus();
+    Juegos juegoMus = new Mus();
  
     impln("Introduzca el nombre de 4 jugadores:");
     int intI = 1;
@@ -274,7 +274,7 @@ public class Actividades {
     /*Creo el ArrayList donde introduzco los jugadores*/
     ArrayList<Jugador> aLstJugadores = new ArrayList(0);    
     /*Creo la variable del juego Poker, el IDE me pide inicializarla a null*/
-		Poker juegoPoker = null;
+    Juegos juegoPoker = null;
     
     boolean blnExcepcion = false;
     /*Para no hacer este bloque "do" tan largo, se podría hacer un método e ir
@@ -286,37 +286,37 @@ public class Actividades {
       intNumJugadores = CompruebaEntero(scnEntrada.nextLine()); 
 			impln("\nIntroduzca sus nombres");
       do {
-				imp("Jugador ", abc(intI), ": ");
-				/*Otras veces verifico aquí los datos introducidos, ahora lo voy a hacer
-					en el método que añade el jugador. De hecho, addJugador lo he de llamar
-					pasándole como parámetro ya un objeto jugador, por lo cual la verificación
-					no la va a producir addJugador sino Jugador*/
-				strJugador = scnEntrada.nextLine();
-				/*Para mí sería mucho más fácil verificar aquí que la cadea entrada por el
-					usuario es no nula y repetir el proceso hasta que sea correcta, pero ahora
-					he probado a hacerlo diferente, lanzando una excepción tanto en el
-					constructor como en el setter y recogiéndola aquí en un try-catch para
-					que el programa no se detenga*/
-				try {
-					Jugador jdrNuevo = new Jugador(strJugador);
-					/*Si todo es correcto incrementamos el contador para el siguiente jugador
-						y añadimos el jugador al aLstJugadores*/
-					intI++;
-					aLstJugadores.add(jdrNuevo);
-				} catch(Exception e) {
-					//e.printStackTrace();
-					imp(e.toString().replace("java.lang.Exception: ",""));
-				}
-			}while (aLstJugadores.size() < intNumJugadores);
+	imp("Jugador ", abc(intI), ": ");
+	/*Otras veces verifico aquí los datos introducidos, ahora lo voy a hacer
+	en el método que añade el jugador. De hecho, addJugador lo he de llamar
+	pasándole como parámetro ya un objeto jugador, por lo cual la verificación
+	no la va a producir addJugador sino Jugador*/
+	strJugador = scnEntrada.nextLine();
+	/*Para mí sería mucho más fácil verificar aquí que la cadea entrada por el
+	usuario es no nula y repetir el proceso hasta que sea correcta, pero ahora
+	he probado a hacerlo diferente, lanzando una excepción tanto en el
+	constructor como en el setter y recogiéndola aquí en un try-catch para
+	que el programa no se detenga*/
+	try {
+	  Jugador jdrNuevo = new Jugador(strJugador);
+	  /*Si todo es correcto incrementamos el contador para el siguiente jugador
+	  y añadimos el jugador al aLstJugadores*/
+	  intI++;
+	  aLstJugadores.add(jdrNuevo);
+	} catch(Exception e) {
+	  //e.printStackTrace();
+	  imp(e.toString().replace("java.lang.Exception: ",""));
+	}
+      }while (aLstJugadores.size() < intNumJugadores);
 			
-			try{
-				juegoPoker = new Poker(aLstJugadores);
+      try{
+	juegoPoker = new Poker(aLstJugadores);
         blnExcepcion = false;
-			}catch(Exception e){
+      }catch(Exception e){
         blnExcepcion = true;
-				imp(e.toString().replace("java.lang.Exception: ",""));
+	imp(e.toString().replace("java.lang.Exception: ",""));
         impln("Vuelva a probar.");
-			}
+      }
     }while (blnExcepcion != false);
           
     impln("\nJuego de Poker inicializado con los ", abc(intNumJugadores), " siguientes jugadores: ");
